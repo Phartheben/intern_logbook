@@ -15,8 +15,17 @@ CREATE TABLE `activity` (
   `create_by` varchar(255) DEFAULT NULL,
   `update_at` varchar(255) DEFAULT NULL,
   `update_by` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `activity_id` varchar(255) DEFAULT NULL,
+  `create_at` varchar(255) DEFAULT NULL,
+  `create_by` varchar(255) DEFAULT NULL,
+  `update_at` varchar(255) DEFAULT NULL,
+  `update_by` varchar(255) DEFAULT NULL,
   `notes` varchar(255) DEFAULT NULL,
-  
   PRIMARY KEY (`id`),
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
