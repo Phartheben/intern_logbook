@@ -18,10 +18,8 @@ class CreateRoleTable extends Migration
         {
             $table->string('id');
             $table->string('value');
-        });
-
+        }
     }
-
     /**
      * Reverse the migrations.
      *
