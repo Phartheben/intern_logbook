@@ -14,7 +14,7 @@ class CreateActivityTable extends Migration
     public function up()
     {
         Schema::dropIfExists('activity');
-        Schema::create('activity', function (Blueprint $table)){
+        Schema::create('activity', function (Blueprint $table){
             $table->string('description');
             $table->timestamps();
             $table->string('id');
