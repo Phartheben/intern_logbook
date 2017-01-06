@@ -13,6 +13,7 @@ class CreateActivityTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('activity');
         Schema::create('activity', function (Blueprint $table)){
             $table->string('description');
             $table->timestamps();
@@ -21,7 +22,7 @@ class CreateActivityTable extends Migration
             $table->string('update_at');
             $table->string('update_by');
 
-        }
+        });
     }
 
     /**
@@ -31,6 +32,6 @@ class CreateActivityTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('activity');
     }
 }
