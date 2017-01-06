@@ -14,14 +14,13 @@ class CreateRoleTable extends Migration
     public function up()
     {
         Schema::dropIfExists('role');
-        Schema::create('role', function (Blueprint $table) {
+        Schema::create('role', function (Blueprint $table) 
+        {
             $table->string('id');
-            $table->string('value');
-            
+            $table->string('value');    
         });
 
     }
-
     /**
      * Reverse the migrations.
      *
