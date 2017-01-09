@@ -6,9 +6,9 @@ composer install
 
 if [ -f "vendor/propel/propel1/runtime/lib/Propel.php" ]
 then
-    if [ -f "config/propel/patch/Propel.php" ]
+    if [ -f "config/propel/patch/Propel.txt" ]
     then
-        cp config/propel/patch/Propel.php vendor/propel/propel1/runtime/lib/Propel.php
+        cp config/propel/patch/Propel.txt vendor/propel/propel1/runtime/lib/Propel.php
     fi
 fi
 
