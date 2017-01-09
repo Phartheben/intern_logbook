@@ -4,17 +4,17 @@
 	<table name="activity" phpName="Activity">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="description" type="varchar" size="255"/>
-        <column name="created_at" type="integer" size="11"/>
+        <column name="created_at" type="timestamp"/>
         <column name="created_by" type="integer" size="11"/>
-        <column name="updated_at" type="integer" size="11"/>
+        <column name="updated_at" type="timestamp"/>
         <column name="updated_by" type="integer" size="11"/>
     </table>
     <table name="comment" phpName="Comment">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="activity_id" type="integer"/>
-        <column name="created_at" type="integer" size="11"/>
+        <column name="created_at" type="timestamp"/>
         <column name="created_by" type="integer" size="11"/>
-        <column name="updated_at" type="integer" size="11"/>
+        <column name="updated_at" type="timestamp"/>
         <column name="updated_by" type="integer" size="11"/>
         <foreign-key foreignTable="activity">
       		<reference local="activity_id" foreign="id"/>
@@ -33,9 +33,9 @@
 		<column name="scopes" type="longvarchar"/>
 		<column name="revoked" type="tinyint" size="1"/>
         <column name="expires_at" type="timestamp"/>
-        <column name="created_at" type="integer" size="11"/>
+       	<column name="created_at" type="timestamp"/>
         <column name="created_by" type="integer" size="11"/>
-        <column name="updated_at" type="integer" size="11"/>
+        <column name="updated_at" type="timestamp"/>
         <column name="updated_by" type="integer" size="11"/>
         <foreign-key foreignTable="user">
       		<reference local="user_id" foreign="id"/>
@@ -48,9 +48,9 @@
 		<column name="scopes" type="longvarchar"/>
 		<column name="revoked" type="tinyint" size="1"/>
         <column name="expires_at" type="timestamp"/>
-        <column name="created_at" type="integer" size="11"/>
+        <column name="created_at" type="timestamp"/>
         <column name="created_by" type="integer" size="11"/>
-        <column name="updated_at" type="integer" size="11"/>
+        <column name="updated_at" type="timestamp"/>
         <column name="updated_by" type="integer" size="11"/>
     </table>
     <table name="oauth_clients" phpName="OauthClients">
@@ -62,35 +62,44 @@
 		<column name="personal_access_client" type="tinyint" size="1"/>
 		<column name="password_client" type="tinyint" size="1"/>
 		<column name="revoked" type="tinyint" size="1"/>
-        <column name="created_at" type="integer" size="11"/>
+        <column name="created_at" type="timestamp"/>
         <column name="created_by" type="integer" size="11"/>
-        <column name="updated_at" type="integer" size="11"/>
+        <column name="updated_at" type="timestamp"/>
         <column name="updated_by" type="integer" size="11"/>
+        <foreign-key foreignTable="user">
+      		<reference local="user_id" foreign="id"/>
+    	</foreign-key>
     </table>
      <table name="oauth_personal_access_clients" phpName="OauthPersonalAccessClients">
         <column name="id" type="integer" size="10" primaryKey="true" autoIncrement="true" />
         <column name="client_id" type="integer" size="11"/>
-        <column name="created_at" type="integer" size="11"/>
+      	<column name="created_at" type="timestamp"/>
         <column name="created_by" type="integer" size="11"/>
-        <column name="updated_at" type="integer" size="11"/>
+        <column name="updated_at" type="timestamp"/>
         <column name="updated_by" type="integer" size="11"/>
+        <foreign-key foreignTable="user">
+      		<reference local="client_id" foreign="id"/>
+    	</foreign-key>
 	</table>
   	<table name="oauth_refresh_tokens" phpName="OauthRefreshTokens">
         <column name="id" type="varchar" size="100" primaryKey="true"/>
         <column name="access_token_id" type="varchar" size="100"/>
         <column name="revoked" type="tinyint" size="1"/>
         <column name="expires_at" type="timestamp"/>
-        <column name="created_at" type="integer" size="11"/>
+       	<column name="created_at" type="timestamp"/>
         <column name="created_by" type="integer" size="11"/>
-        <column name="updated_at" type="integer" size="11"/>
+        <column name="updated_at" type="timestamp"/>
         <column name="updated_by" type="integer" size="11"/>
+        <foreign-key foreignTable="user">
+      		<reference local="access_token_id" foreign="id"/>
+    	</foreign-key>
 	</table>
     <table name="role" phpName="Role">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="value" type="varchar" size="255"/>
-        <column name="created_at" type="integer" size="11"/>
+        <column name="created_at" type="timestamp"/>
         <column name="created_by" type="integer" size="11"/>
-        <column name="updated_at" type="integer" size="11"/>
+        <column name="updated_at" type="timestamp"/>
         <column name="updated_by" type="integer" size="11"/>
     </table>
     <table name="user" phpName="User">
@@ -100,9 +109,9 @@
         <column name="email" type="varchar" size="255"/>
         <column name="password" type="varchar" size="255"/>
         <column name="role_id" type="integer"/>
-        <column name="created_at" type="integer" size="11"/>
+        <column name="created_at" type="timestamp"/>
         <column name="created_by" type="integer" size="11"/>
-        <column name="updated_at" type="integer" size="11"/>
+        <column name="updated_at" type="timestamp"/>
         <column name="updated_by" type="integer" size="11"/>
         <foreign-key foreignTable="role">
       		<reference local="role_id" foreign="id"/>
