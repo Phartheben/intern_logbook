@@ -1,0 +1,68 @@
+<?php
+
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+
+class _SkeletonTest extends EntityTestCase
+{
+    use DatabaseTransactions;
+
+    protected function setup()
+    {
+        parent::setup();
+
+        $this->className = '\App\Models\ClassName';
+    }
+
+    public function testSuite()
+    {
+        $this->validateTestSuite($this->className);
+    }
+
+    // ---- relationship
+
+    // ---- attributes
+
+    // ---- methods
+
+    // ---- resources
+
+    /**
+     *
+     */
+    public function testToResource()
+    {
+        $this->assertTrue(false);
+    }
+
+    // ---- statics
+
+    // ---- scopes
+
+    // ---- crud
+
+    /**
+     *
+     */
+    public function testCreate()
+    {
+        $this->assertTrue(false);
+    }
+
+    /**
+     *
+     */
+    public function testUpdate()
+    {
+        $this->assertTrue(false);
+    }
+
+    /**
+     *
+     */
+    public function testDelete()
+    {
+        $this->assertTrue(false);
+    }
+}
