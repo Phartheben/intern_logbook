@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <propel>
+    <datasources default="orm">
+      <datasource id="orm">
+        <adapter>mysql</adapter>
+        <connection>
+          <dsn>mysql:host=127.0.0.1;port=3306;dbname=intern_logbook;charset=utf8</dsn>
+          <user>root</user>
+          <password/>
+        </connection>
+      </datasource>
+    </datasources>
+  </propel>
+</config>
