@@ -12,7 +12,6 @@ then
     fi
 fi
 
-git update-index --assume-unchanged .DS_Store
 git update-index --assume-unchanged config/orm-conf-buildtime.php
 git update-index --assume-unchanged config/propel/config/build.properties
 git update-index --assume-unchanged config/propel/config/buildtime-conf.xml
