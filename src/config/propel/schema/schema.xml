@@ -25,6 +25,66 @@
         <column name="migration" type="varchar" size="255"/>
         <column name="batch" type="integer" size="11"/>
     </table>
+    <table name="oauth_access_tokens" phpName="OauthAccessTokens">
+        <column name="id" type="varchar" size="100" primaryKey="true" />
+        <column name="user_id" type="integer" size="11"/>
+        <column name="client_id" type="integer" size="11"/>
+        <column name="name" type="varchar" size="255"/>
+		<column name="scopes" type="longvarchar"/>
+		<column name="revoked" type="tinyint" size="1"/>
+        <column name="expires_at" type="timestamp"/>
+        <column name="created_at" type="integer" size="11"/>
+        <column name="created_by" type="integer" size="11"/>
+        <column name="updated_at" type="integer" size="11"/>
+        <column name="updated_by" type="integer" size="11"/>
+        <foreign-key foreignTable="user">
+      		<reference local="user_id" foreign="id"/>
+    	</foreign-key>
+    </table>
+    <table name="oauth_access_codes" phpName="OauthAccessCodes">
+        <column name="id" type="varchar" size="100" primaryKey="true" />
+        <column name="user_id" type="integer" size="11"/>
+        <column name="client_id" type="integer" size="11"/>
+		<column name="scopes" type="longvarchar"/>
+		<column name="revoked" type="tinyint" size="1"/>
+        <column name="expires_at" type="timestamp"/>
+        <column name="created_at" type="integer" size="11"/>
+        <column name="created_by" type="integer" size="11"/>
+        <column name="updated_at" type="integer" size="11"/>
+        <column name="updated_by" type="integer" size="11"/>
+    </table>
+    <table name="oauth_clients" phpName="OauthClients">
+        <column name="id" type="integer" size="10" primaryKey="true" autoIncrement="true" />
+        <column name="user_id" type="integer" size="11"/>
+        <column name="name" type="varchar" size="255"/>
+        <column name="secret" type="varchar" size="100"/>
+        <column name="redirect" type="longvarchar" size="11"/>
+		<column name="personal_access_client" type="tinyint" size="1"/>
+		<column name="password_client" type="tinyint" size="1"/>
+		<column name="revoked" type="tinyint" size="1"/>
+        <column name="created_at" type="integer" size="11"/>
+        <column name="created_by" type="integer" size="11"/>
+        <column name="updated_at" type="integer" size="11"/>
+        <column name="updated_by" type="integer" size="11"/>
+    </table>
+     <table name="oauth_personal_access_clients" phpName="OauthPersonalAccessClients">
+        <column name="id" type="integer" size="10" primaryKey="true" autoIncrement="true" />
+        <column name="client_id" type="integer" size="11"/>
+        <column name="created_at" type="integer" size="11"/>
+        <column name="created_by" type="integer" size="11"/>
+        <column name="updated_at" type="integer" size="11"/>
+        <column name="updated_by" type="integer" size="11"/>
+	</table>
+  	<table name="oauth_refresh_tokens" phpName="OauthRefreshTokens">
+        <column name="id" type="varchar" size="100" primaryKey="true"/>
+        <column name="access_token_id" type="varchar" size="100"/>
+        <column name="revoked" type="tinyint" size="1"/>
+        <column name="expires_at" type="timestamp"/>
+        <column name="created_at" type="integer" size="11"/>
+        <column name="created_by" type="integer" size="11"/>
+        <column name="updated_at" type="integer" size="11"/>
+        <column name="updated_by" type="integer" size="11"/>
+	</table>
     <table name="role" phpName="Role">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="value" type="varchar" size="255"/>
