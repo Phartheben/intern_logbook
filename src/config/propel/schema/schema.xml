@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database defaultIdMethod="native" name="orm">
+    <table name="migrations" phpName="Migrations">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="migration" type="varchar" size="255"/>
+        <column name="batch" type="integer" size="11"/>
+    </table>
+</database>

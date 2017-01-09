@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <propel>
+    <datasources default="orm">
+      <datasource id="orm">
+        <adapter>mysql</adapter>
+        <connection>
+          <dsn></dsn>
+          <user></user>
+          <password/>
+        </connection>
+      </datasource>
+    </datasources>
+  </propel>
+</config>
