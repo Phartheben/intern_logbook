@@ -4,6 +4,7 @@
 	<table name="activity" phpName="Activity">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="description" type="varchar" size="255"/>
+        <column name="isactive" type="tinyint" defaultValue='1'/>
         <column name="created_at" type="timestamp"/>
         <column name="created_by" type="integer" size="11"/>
         <column name="updated_at" type="timestamp"/>
@@ -11,7 +12,9 @@
     </table>
     <table name="comment" phpName="Comment">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="description" type="varchar" size="255"/>
         <column name="activity_id" type="integer"/>
+        <column name="isactive" type="tinyint" defaultValue='1'/>
         <column name="created_at" type="timestamp"/>
         <column name="created_by" type="integer" size="11"/>
         <column name="updated_at" type="timestamp"/>
@@ -97,6 +100,7 @@
     <table name="role" phpName="Role">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="value" type="varchar" size="255"/>
+        <column name="isactive" type="tinyint" defaultValue='1'/>
         <column name="created_at" type="timestamp"/>
         <column name="created_by" type="integer" size="11"/>
         <column name="updated_at" type="timestamp"/>

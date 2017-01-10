@@ -20,4 +20,5 @@ Route::get('/hi', function () {
 });
 
 Route::get('user', ['uses' => 'UserController@index']);
+Route::get('role', ['uses' => 'RoleController@index']);
 

@@ -21,4 +21,7 @@ Route::get('/hi', function () {
     return 'hi api';
 });
 
-Route::resource('foo', '\App\Http\Controllers\Api\UserController');
+Route::resource('user', '\App\Http\Controllers\Api\UserController');
+Route::resource('role', '\App\Http\Controllers\Api\RoleController');
+Route::resource('activity', '\App\Http\Controllers\Api\ActivityController');
+Route::resource('comment', '\App\Http\Controllers\Api\CommentController');
