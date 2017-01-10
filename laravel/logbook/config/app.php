@@ -228,6 +228,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'DateTimeHelper' => \App\Vetter\Helpers\DateTimeHelper::class,
+        'DBHelper'       => \App\Vetter\Helpers\DBHelper::class,
+        'DebugHelper'    => \App\Vetter\Helpers\DebugHelper::class,
+        'PropelHelper'   => \App\Vetter\Helpers\PropelHelper::class,
+
     ],
 
 ];
