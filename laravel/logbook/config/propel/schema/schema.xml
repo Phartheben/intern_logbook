@@ -109,6 +109,7 @@
         <column name="email" type="varchar" size="255"/>
         <column name="password" type="varchar" size="255"/>
         <column name="role_id" type="integer"/>
+        <column name="isactive" type="tinyint" defaultValue='1'/>
         <column name="created_at" type="timestamp"/>
         <column name="created_by" type="integer" size="11"/>
         <column name="updated_at" type="timestamp"/>

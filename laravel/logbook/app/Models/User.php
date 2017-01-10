@@ -82,30 +82,14 @@ class User extends Model
 
         // on create
         static::creating(function ($record) {
-
-            // $record->touchBusinessId();
-            // $record->touchCreatedBy();
-            // $record->touchUuid();
-            // $record->touchIndex();
-
-            // force to stop. please check if there is any pre/post hook in PropelORM
-            throw new \Exception("FIX THIS! creating : ".get_class($record));
         });
 
         // on update
         static::updating(function ($record) {
-
-            // $record->touchUpdatedBy();
-
-            // force to stop. please check if there is any pre/post hook in PropelORM
-            throw new \Exception("FIX THIS! updating : ".get_class($record));
         });
 
         // after save
         static::saved(function ($record) {
-
-            // force to stop. please check if there is any pre/post hook in PropelORM
-            throw new \Exception("FIX THIS! saved : ".get_class($record));
         });
     }
 }

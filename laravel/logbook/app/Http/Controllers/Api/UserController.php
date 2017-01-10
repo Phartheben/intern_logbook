@@ -1,9 +1,9 @@
 <?php
-// namespace App\Http\Controllers\MyNameSpace;
+namespace App\Http\Controllers\Api;
 
 use \App\Http\Controllers\AppController;
 
-class _SkeletonController extends AppController
+class UserController extends AppController
 {
     /**
      * Display a listing of the resource.
@@ -17,23 +17,12 @@ class _SkeletonController extends AppController
         try {
             \DB::beginTransaction();
 
-            $model = new \App\Models\MyModel;
-                        // ----@ add criteria here;
-            $data  = $model->paginate();
+            $model = new \App\Models\User;
+            $model = $model->where('isactive', '=', 1);
+            $data  = $model->paginate(null);
 
             $this->setResponseVar('response.meta', \DBHelper::toMeta($data));
-
-            // ---- either
             $this->setResponseVar('response.resources', \DBHelper::toResource($data));
-
-            // ---- or
-            // $resources = [];
-            // foreach ($data as $record) {
-            //     $resource = $record->toResource();
-
-            //     $resources[] = $resource;
-            // }
-            // $this->setResponseVar('response.resources', $resources);
 
             \DB::commit();
         } catch (Exception $e) {
@@ -55,7 +44,7 @@ class _SkeletonController extends AppController
     {
         // $businessId = session('myBusinessId');
 
-        $data = new \App\Models\MyModel;
+        $data = new \App\Models\User;
 
         // setup validator
         $rules    = [];
@@ -63,7 +52,7 @@ class _SkeletonController extends AppController
         $input    = request()->all();
 
         // rules
-        $rules['field'] = 'required';
+        $rules['email']     = 'required|email';
 
         // validate
         $validator = \Validator::make($input, $rules, $messages);
@@ -115,8 +104,10 @@ class _SkeletonController extends AppController
         try {
             \DB::beginTransaction();
 
-            $model = new \App\Models\MyModel;
-                        // ----@ add criteria here;
+            $model = new \App\Models\User;
+            $model = $model
+                        ->where('id', '=', $id)
+                        ->where('isactive', '=', 1);
             $data  = $model->first();
 
             if ($data) {
@@ -146,10 +137,9 @@ class _SkeletonController extends AppController
     {
         // $businessId = session('myBusinessId');
 
-        $model = new \App\Models\MyModel;
-                        // ----@ add criteria here;
+        $model = new \App\Models\User;
+        $model = $model->where('id', '=', $id);
         $data  = $model->first();
-
 
         if ($data) {
 
@@ -159,7 +149,9 @@ class _SkeletonController extends AppController
             $input    = request()->all();
 
             // rules
-            $rules['field']     = 'required';
+            $rules['email']     = 'required|email';
+            $rules['firstname'] = 'required';
+            $rules['lastname']  = 'required';            
 
             // validate
             $validator = \Validator::make($input, $rules, $messages);
@@ -210,8 +202,9 @@ class _SkeletonController extends AppController
     {
         // $businessId = session('myBusinessId');
 
-        $model = new \App\Models\MyModel;
-                        // ----@ add criteria here;
+        $model = new \App\Models\User;
+        $model = $model->where('id', '=', $id)
+                       ->where('isactive', '=', 1);           
         $data  = $model->first();
 
         if ($data) {
@@ -232,7 +225,7 @@ class _SkeletonController extends AppController
                 $fails = true;
             }
 
-            // show error on savings message
+            // show error on savings messag
             if ($fails) {
                 $this->setResponseMessage(trans('messages.error-on-delete'), 400);
             }
@@ -246,6 +239,11 @@ class _SkeletonController extends AppController
 
     private function bindInput($data, $input)
     {
-        // $data->field     = array_get($input, 'field');
+        $data->email     = array_get($input, 'email');
+        $data->firstname = array_get($input, 'firstname');
+        $data->lastname  = array_get($input, 'lastname');
+
+
+
     }
 }

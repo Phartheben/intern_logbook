@@ -21,4 +21,4 @@ Route::get('/hi', function () {
     return 'hi api';
 });
 
-Route::get('foo', 'UserController@index');
+Route::resource('foo', '\App\Http\Controllers\Api\UserController');
