@@ -15,10 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hi', function () {
-    return 'hi';
-});
-
-Route::get('user', ['uses' => 'UserController@index']);
-Route::get('role', ['uses' => 'RoleController@index']);
-
+Auth::routes();

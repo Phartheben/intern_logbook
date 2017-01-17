@@ -8,12 +8,21 @@ use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
 class User extends Authenticatable
 {
-    use Notifiable;
 
     use HasApiTokens, Notifiable;
 
+    
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = "user";
+ 
     /**
      * The attributes that are mass assignable.
      *
