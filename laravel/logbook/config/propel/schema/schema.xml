@@ -112,6 +112,7 @@
         <column name="lastname" type="varchar" size="255"/>
         <column name="email" type="varchar" size="255"/>
         <column name="password" type="varchar" size="255"/>
+        <column name="remember_token" type="varchar" size="100"/>
         <column name="role_id" type="integer"/>
         <column name="isactive" type="tinyint" defaultValue='1'/>
         <column name="created_at" type="timestamp"/>
@@ -121,6 +122,9 @@
         <foreign-key foreignTable="role">
       		<reference local="role_id" foreign="id"/>
     	</foreign-key>
+        <unique>
+            <unique-column name="email"/>
+        </unique>
     </table>
     
 </database>
