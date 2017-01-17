@@ -1,21 +1,33 @@
 <ion-view title="Sign Up" id="page2" style="background-color:#0E0D0D;">
-  <ion-content padding="true" class="has-header">
+  <ion-content padding="true" style="background: url(img/4kBopOkzTrayevMm8Xzk_uD9js.png) no-repeat center;background-size:cover;" class="has-header">
     <form id="signUp-form2" class="list">
+      <label class="item item-select menu-item" id="signUp-select2">
+        <span class="input-label">Select</span>
+        <select>
+          <option></option>
+          <option>Student</option>
+          <option>Lecturer</option>
+          <option>Supervisor</option>
+        </select>
+      </label>
       <label class="item item-input item-floating-label" id="signUp-input7">
         <input type="text" placeholder="Firstname">
       </label>
+      <div class="spacer" style="width: 300px; height: 14px;"></div>
       <label class="item item-input item-floating-label" id="signUp-input8">
         <input type="text" placeholder="Lastname">
       </label>
+      <div class="spacer" style="width: 300px; height: 13px;"></div>
       <label class="item item-input item-floating-label" id="signUp-input9">
-        <input type="text" placeholder="Email">
+        <input type="email" placeholder="Email">
       </label>
+      <div class="spacer" style="width: 300px; height: 13px;"></div>
       <label class="item item-input item-floating-label" id="signUp-input10">
-        <input type="text" placeholder="Password">
+        <input type="password" placeholder="Password">
       </label>
     </form>
     <div class="spacer" style="width: 300px; height: 66px;"></div>
-    <a ui-sref="menu.logbook" id="signUp-button3" class="button button-positive  button-block">Create</a>
+    <a ui-sref="menu.logbook" id="signUp-button3" style="color:#FAEBEB;" class="button button-dark  button-block">Create</a>
     <a ui-sref="logIn" id="signUp-button4" class="button button-stable  button-block button-clear">Already have an account? Sign in</a>
   </ion-content>
 </ion-view>

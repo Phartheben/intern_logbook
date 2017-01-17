@@ -48,32 +48,62 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('menu.change_pass', {
+  .state('menu.page6', {
     url: '/change_pass',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/change_pass.html',
-        controller: 'change_passCtrl'
+        templateUrl: 'templates/page6.html',
+        controller: 'page6Ctrl'
       }
     }
   })
 
-  .state('menu.change_mail', {
+  .state('menu.page7', {
     url: '/chge_email',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/change_mail.html',
-        controller: 'change_mailCtrl'
+        templateUrl: 'templates/page7.html',
+        controller: 'page7Ctrl'
       }
     }
   })
 
   .state('menu.logbook2', {
-    url: '/logbook1',
+    url: '/logbook_first',
     views: {
       'side-menu21': {
         templateUrl: 'templates/logbook2.html',
         controller: 'logbook2Ctrl'
+      }
+    }
+  })
+
+  .state('menu.remarks', {
+    url: '/remarks_firstday',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/remarks.html',
+        controller: 'remarksCtrl'
+      }
+    }
+  })
+
+  .state('menu.remarks2', {
+    url: '/remarks_pub',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/remarks2.html',
+        controller: 'remarks2Ctrl'
+      }
+    }
+  })
+
+  .state('menu.logbook3', {
+    url: '/public',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/logbook3.html',
+        controller: 'logbook3Ctrl'
       }
     }
   })
@@ -108,6 +138,12 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('logbook4', {
+    url: '/page9',
+    templateUrl: 'templates/logbook4.html',
+    controller: 'logbook4Ctrl'
+  })
+
   .state('menu.cSVSummary', {
     url: '/csv_summary',
     views: {
@@ -118,12 +154,12 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('menu.logbook3', {
+  .state('menu.logbook5', {
     url: '/new entry',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/logbook3.html',
-        controller: 'logbook3Ctrl'
+        templateUrl: 'templates/logbook5.html',
+        controller: 'logbook5Ctrl'
       }
     }
   })

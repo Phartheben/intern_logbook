@@ -10,30 +10,16 @@ angular.module('app.routes', [])
     
   
 
-      .state('menu.home', {
-    url: '/page1',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/home.html',
-        controller: 'homeCtrl'
-      }
-    }
+      .state('logIn', {
+    url: '/login',
+    templateUrl: 'templates/logIn.html',
+    controller: 'logInCtrl'
   })
 
-  .state('settings', {
-    url: '/page2',
-    templateUrl: 'templates/settings.html',
-    controller: 'settingsCtrl'
-  })
-
-  .state('menu.logbook', {
-    url: '/page3',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/logbook.html',
-        controller: 'logbookCtrl'
-      }
-    }
+  .state('signUp', {
+    url: '/sign_up',
+    templateUrl: 'templates/signUp.html',
+    controller: 'signUpCtrl'
   })
 
   .state('menu', {
@@ -42,20 +28,58 @@ angular.module('app.routes', [])
     controller: 'menuCtrl'
   })
 
-  .state('login', {
-    url: '/login_page',
-    templateUrl: 'templates/login.html',
-    controller: 'loginCtrl'
+  .state('menu.logbook', {
+    url: '/logbook',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/logbook.html',
+        controller: 'logbookCtrl'
+      }
+    }
   })
 
-  .state('signup', {
-    url: '/signup_page',
-    templateUrl: 'templates/signup.html',
-    controller: 'signupCtrl'
+  .state('menu.settings', {
+    url: '/settings ',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/settings.html',
+        controller: 'settingsCtrl'
+      }
+    }
+  })
+
+  .state('menu.change_pass', {
+    url: '/change_pass',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/change_pass.html',
+        controller: 'change_passCtrl'
+      }
+    }
+  })
+
+  .state('menu.change_mail', {
+    url: '/chge_email',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/change_mail.html',
+        controller: 'change_mailCtrl'
+      }
+    }
+  })
+
+  .state('menu.logbook2', {
+    url: '/logbook1',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/logbook2.html',
+        controller: 'logbook2Ctrl'
+      }
+    }
   })
 
   .state('menu.summary', {
-    url: '/Summary',
+    url: '/summary',
     views: {
       'side-menu21': {
         templateUrl: 'templates/summary.html',
@@ -64,7 +88,47 @@ angular.module('app.routes', [])
     }
   })
 
-$urlRouterProvider.otherwise('/side-menu21/page1')
+  .state('menu.monthlySummary', {
+    url: '/monthly_summary',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/monthlySummary.html',
+        controller: 'monthlySummaryCtrl'
+      }
+    }
+  })
+
+  .state('menu.pDFSummary', {
+    url: '/PDF_summary',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/pDFSummary.html',
+        controller: 'pDFSummaryCtrl'
+      }
+    }
+  })
+
+  .state('menu.cSVSummary', {
+    url: '/csv_summary',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/cSVSummary.html',
+        controller: 'cSVSummaryCtrl'
+      }
+    }
+  })
+
+  .state('menu.logbook3', {
+    url: '/new entry',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/logbook3.html',
+        controller: 'logbook3Ctrl'
+      }
+    }
+  })
+
+$urlRouterProvider.otherwise('/login')
 
   
 
