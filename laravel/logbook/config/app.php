@@ -180,6 +180,7 @@ return [
 
         // vendors
         Laravel\Passport\PassportServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
