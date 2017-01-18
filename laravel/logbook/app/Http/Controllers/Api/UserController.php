@@ -243,7 +243,5 @@ class UserController extends AppController
         $data->firstname = array_get($input, 'firstname');
         $data->lastname  = array_get($input, 'lastname');
 
-
-
     }
 }
