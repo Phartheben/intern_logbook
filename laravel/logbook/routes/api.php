@@ -22,12 +22,16 @@ Route::group(['middleware' => 'auth:api'], function () {
 	Route::resource('role', '\App\Http\Controllers\Api\RoleController');
 	Route::resource('activity', '\App\Http\Controllers\Api\ActivityController');
 	Route::resource('comment', '\App\Http\Controllers\Api\CommentController');
+	Route::resource('company', '\App\Http\Controllers\Api\CompanyController');
+	Route::resource('institution', '\App\Http\Controllers\Api\InstitutionController');
+	Route::resource('user-company', '\App\Http\Controllers\Api\UserCompanyController');
 
 });
 
 // Route::resource('account', '\App\Http\Controllers\Api\AccountController');
 Route::post('account/sign-up', '\App\Http\Controllers\Api\AccountController@signUp');
 Route::resource('pdf', '\App\Http\Controllers\Api\PdfController');
+
 
 
 

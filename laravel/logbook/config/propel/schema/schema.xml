@@ -5,10 +5,18 @@
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="description" type="varchar" size="255"/>
         <column name="isactive" type="tinyint" defaultValue='1'/>
+        <column name="user_id" type="integer" size="11"/>
+        <column name="company_id" type="integer" size="11"/>
         <column name="created_at" type="timestamp"/>
         <column name="created_by" type="integer" size="11"/>
         <column name="updated_at" type="timestamp"/>
         <column name="updated_by" type="integer" size="11"/>
+        <foreign-key foreignTable="user">
+            <reference local="user_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="company">
+            <reference local="company_id" foreign="id"/>
+        </foreign-key>
     </table>
     <table name="comment" phpName="Comment">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
@@ -22,6 +30,24 @@
         <foreign-key foreignTable="activity">
       		<reference local="activity_id" foreign="id"/>
     	</foreign-key>
+    </table>
+    <table name="company" phpName="Company">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="isactive" type="tinyint" defaultValue='1'/>
+        <column name="location" type="varchar" size="255"/>
+        <column name="created_at" type="timestamp"/>
+        <column name="created_by" type="integer" size="11"/>
+        <column name="updated_at" type="timestamp"/>
+        <column name="updated_by" type="integer" size="11"/>
+    </table>
+    <table name="institution" phpName="Institution">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="isactive" type="tinyint" defaultValue='1'/>
+        <column name="intake" type="varchar" size="255"/>
+        <column name="created_at" type="timestamp"/>
+        <column name="created_by" type="integer" size="11"/>
+        <column name="updated_at" type="timestamp"/>
+        <column name="updated_by" type="integer" size="11"/>
     </table>
     <table name="migrations" phpName="Migrations">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
@@ -126,7 +152,24 @@
             <unique-column name="email"/>
         </unique>
     </table>
-    
+    <table name="user_company" isCrossRef="true">
+        <column name="user_id" type="INTEGER" primaryKey="true"/>
+        <column name="company_id" type="INTEGER" primaryKey="true"/>
+        <column name="duration" type="varchar" size="255"/>
+        <column name="start_date" type="varchar" size="255"/>
+        <column name="end_date" type="varchar" size="255"/>
+        <column name="isactive" type="tinyint" defaultValue='1'/>
+        <column name="created_at" type="timestamp"/>
+        <column name="created_by" type="integer" size="11"/>
+        <column name="updated_at" type="timestamp"/>
+        <column name="updated_by" type="integer" size="11"/>
+        <foreign-key foreignTable="user">
+            <reference local="user_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="company">
+            <reference local="company_id" foreign="id"/>
+        </foreign-key>
+    </table>
 </database>
 
 
