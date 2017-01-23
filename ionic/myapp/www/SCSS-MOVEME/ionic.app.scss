@@ -1,4 +1,4 @@
-$positive: #E673A5;
+$positive: #7A73E6;
 $calm: #3487D1;
 $dark: #1C1B1B;
 $SIDEMENU_TOP: #1C1B1B;
@@ -6,9 +6,23 @@ $SIDEMENU_BOTTOM: #F8F8F8;
 $SIDEMENU_TRANSPARENCY: rgba(255,255,255,0.4);
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "../www/lib/ionic/scss";
+.sum-item {
+	background: none;
+	color: none;
+	font-weight: 300;
+	color: white;
+	border: 0px;
+	.item-content {
+		background: none;
+		&.activated {
+			background: $SIDEMENU_TRANSPARENCY;
+		}
+		
+	}
+}
 .menu-item {
 	background: none;
-	color: white;
+	color: none;
 	font-weight: 300;
 	color: white;
 	border: 0px;

@@ -28,15 +28,15 @@ angular.module('app.routes', [])
     controller: 'menuCtrl'
   })
 
-  .state('menu.logbook', {
-    url: '/logbook',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/logbook.html',
-        controller: 'logbookCtrl'
+    .state('menu.logbook', {
+      url: '/logbook',
+      views: {
+        'side-menu21': {
+          templateUrl: 'templates/logbook.html',
+          controller: 'logbookCtrl'
+        }
       }
-    }
-  })
+    })
 
   .state('menu.settings', {
     url: '/settings ',
@@ -162,6 +162,12 @@ angular.module('app.routes', [])
         controller: 'logbook5Ctrl'
       }
     }
+  })
+
+  .state('page', {
+    url: '/page17',
+    templateUrl: 'templates/page.html',
+    controller: 'pageCtrl'
   })
 
 $urlRouterProvider.otherwise('/login')

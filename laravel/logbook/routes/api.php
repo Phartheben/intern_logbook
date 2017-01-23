@@ -22,12 +22,20 @@ Route::group(['middleware' => 'auth:api'], function () {
 	Route::resource('role', '\App\Http\Controllers\Api\RoleController');
 	Route::resource('activity', '\App\Http\Controllers\Api\ActivityController');
 	Route::resource('comment', '\App\Http\Controllers\Api\CommentController');
-
 });
 
-// Route::resource('account', '\App\Http\Controllers\Api\AccountController');
-Route::post('account/sign-up', '\App\Http\Controllers\Api\AccountController@signUp');
-Route::resource('pdf', '\App\Http\Controllers\Api\PdfController');
 
+Route::group(['middleware' => 'cors'], function () {
+	// Route::resource('account', '\App\Http\Controllers\Api\AccountController');
+	Route::post('account/sign-up', '\App\Http\Controllers\Api\AccountController@signUp');
+	Route::resource('pdf', '\App\Http\Controllers\Api\PdfController');
+});
+
+Route::post('hello', function () {
+	return response()->json('hello');
+})
+->middleware(['cors'])
+;
+	
 
 

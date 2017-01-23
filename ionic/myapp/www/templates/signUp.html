@@ -1,33 +1,63 @@
-<ion-view title="Sign Up" id="page2" style="background-color:#0E0D0D;">
-  <ion-content padding="true" style="background: url(img/4kBopOkzTrayevMm8Xzk_uD9js.png) no-repeat center;background-size:cover;" class="has-header">
-    <form id="signUp-form2" class="list">
-      <label class="item item-select menu-item" id="signUp-select2">
-        <span class="input-label">Select</span>
-        <select>
-          <option></option>
-          <option>Student</option>
-          <option>Lecturer</option>
-          <option>Supervisor</option>
-        </select>
-      </label>
-      <label class="item item-input item-floating-label" id="signUp-input7">
-        <input type="text" placeholder="Firstname">
-      </label>
-      <div class="spacer" style="width: 300px; height: 14px;"></div>
-      <label class="item item-input item-floating-label" id="signUp-input8">
-        <input type="text" placeholder="Lastname">
-      </label>
-      <div class="spacer" style="width: 300px; height: 13px;"></div>
-      <label class="item item-input item-floating-label" id="signUp-input9">
-        <input type="email" placeholder="Email">
-      </label>
-      <div class="spacer" style="width: 300px; height: 13px;"></div>
-      <label class="item item-input item-floating-label" id="signUp-input10">
-        <input type="password" placeholder="Password">
-      </label>
-    </form>
-    <div class="spacer" style="width: 300px; height: 66px;"></div>
-    <a ui-sref="menu.logbook" id="signUp-button3" style="color:#FAEBEB;" class="button button-dark  button-block">Create</a>
-    <a ui-sref="logIn" id="signUp-button4" class="button button-stable  button-block button-clear">Already have an account? Sign in</a>
-  </ion-content>
+<form ng-app="myApp" 
+name="myForm" novalidate>
+<html ng-app="validation">
+
+
+<ion-view title="Sign Up" id="page2" style="background-color:#FFFFFF;">
+	<ion-content padding="true" class="has-header">
+		<form id="signUp-form2" class="list">
+			<label class="item item-select menu-item" id="signUp-select2">
+				<span class="input-label">Select</span>
+				<select>
+					<option></option>
+					<option>Student</option>
+					<option>Lecturer</option>
+					<option>Supervisor</option>
+				</select>
+			</label>
+			<label class="item item-input item-floating-label" id="signUp-input7">
+				<input type="text" placeholder="Firstname" ng-model="data.firstName" name="firstName" class="form-control" required> 
+				<span style="color:red" ng-show="myForm.firstName.$dirty && myForm.firstName.$invalid">
+					<span ng-show="myForm.firstName.$error.required" >Username is required</span>
+				</span>
+			</label>
+			<div class="spacer" style="width: 300px; height: 14px;"></div>
+			<label class="item item-input item-floating-label" id="signUp-input8">
+				<input type="text" placeholder="Lastname" ng-model="data.lastname" name="lastname" class="form-control" required>
+				<span style="color:red" ng-show="myForm.lastname.$dirty && myForm.lastname.$invalid">
+					<span ng-show="myForm.lastname.$error.required">Lastname is required</span>
+				</span>
+			</label>
+			<div class="spacer" style="width: 300px; height: 13px;"></div>
+			<label class="item item-input item-floating-label" id="signUp-input9">
+				<input type="email" placeholder="Email" ng-model="data.email" class="form-control" name="email" required>
+				<span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+					<span ng-show="myForm.email.$error.required">Email is required.</span>
+					<span ng-show="myForm.email.$error.email">Invalid email address.</span>
+				</span>
+			</label>
+			<div class="spacer" style="width: 300px; height: 13px;"></div>
+			<label class="item item-input item-floating-label" id="signUp-input10">
+				<div class="fieldset" ng-class="{'has-error':myForm.password.$invalid && !myForm.password.$pristine}">
+					<input type="password" id="password" name="password" placeholder="Password" ng-model="data.password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required />
+					<p ng-show="myForm.password.$error.required" class="error"> </p>
+					<p ng-show="myForm.password.$error.minlength" class="error">
+						Passwords must be between 8 and 20 characters.</p>
+						<p ng-show="myForm.password.$error.pattern" class="error">
+							Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</p>
+				</div>
+			</label>
+			<div class="spacer" style="width: 300px; height: 15px;"></div>
+			<label class="item item-input item-floating-label" id="signUp-input13">
+				<input type="password" id="confirmpassword" name="confirmPassword" class="form-control"  placeholder="Confirm Password" 
+				ng-model="data.confirmPassword" ng-required no-Match="myForm.password" />
+				<div class='msg-block' ng-show='myForm.$error'>
+					<span class='msg-error' ng-show='myForm.confirmPassword.$error.noMatch'>Passwords don't match.</span>
+				</div>
+			</label>
+		</form>
+		<br/>
+		<a ng-click="create()" id="signUp-button3" style="color:#FAEBEB;" class="button button-dark  button-block" >Register</a>
+		<a ui-sref="logIn" id="signUp-button4" class="button button-stable  button-block button-clear">Already have an account? Sign in </a>
+	</ion-content>
 </ion-view>
