@@ -16,9 +16,9 @@ name="myForm" novalidate>
 				</select>
 			</label>
 			<label class="item item-input item-floating-label" id="signUp-input7">
-				<input type="text" placeholder="Firstname" ng-model="data.firstName" name="firstName" class="form-control" required> 
-				<span style="color:red" ng-show="myForm.firstName.$dirty && myForm.firstName.$invalid">
-					<span ng-show="myForm.firstName.$error.required" >Username is required</span>
+				<input type="text" placeholder="Firstname" ng-model="data.firstname" name="firstname" class="form-control" required> 
+				<span style="color:red" ng-show="myForm.firstname.$dirty && myForm.firstname.$invalid">
+					<span ng-show="myForm.firstname.$error.required" >Username is required</span>
 				</span>
 			</label>
 			<div class="spacer" style="width: 300px; height: 14px;"></div>
@@ -40,11 +40,10 @@ name="myForm" novalidate>
 			<label class="item item-input item-floating-label" id="signUp-input10">
 				<div class="fieldset" ng-class="{'has-error':myForm.password.$invalid && !myForm.password.$pristine}">
 					<input type="password" id="password" name="password" placeholder="Password" ng-model="data.password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required />
-					<p ng-show="myForm.password.$error.required" class="error"> </p>
-					<p ng-show="myForm.password.$error.minlength" class="error">
-						Passwords must be between 8 and 20 characters.</p>
-						<p ng-show="myForm.password.$error.pattern" class="error">
-							Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</p>
+				      <p ng-show="myForm.password.$error.required" class="error"> </p>
+				      <p ng-show="myForm.password.$error.minlength" class="error"> Passwords must be between 8 and 20 characters.</p>
+					  <p ng-show="myForm.password.$error.pattern" class="error">
+					 Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</p>
 				</div>
 			</label>
 			<div class="spacer" style="width: 300px; height: 15px;"></div>
@@ -57,7 +56,7 @@ name="myForm" novalidate>
 			</label>
 		</form>
 		<br/>
-		<a ng-click="create()" id="signUp-button3" style="color:#FAEBEB;" class="button button-dark  button-block" >Register</a>
+		<a ng-click="create()" id="signUp-button3" style="color:#FAEBEB;" class="button button-dark  button-block" ng-disabled=myForm.$invalid >Register</a>
 		<a ui-sref="logIn" id="signUp-button4" class="button button-stable  button-block button-clear">Already have an account? Sign in </a>
 	</ion-content>
 </ion-view>

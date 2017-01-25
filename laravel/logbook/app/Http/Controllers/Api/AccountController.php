@@ -26,7 +26,7 @@ class AccountController extends AppController
         // rules
         $rules['firstname'] = 'required';
         $rules['lastname']  = 'required';
-        $rules['email']     = 'required|email';
+        $rules['email']     = 'required|email|unique:user,email';
         $rules['password']  = 'required';
 
 

@@ -3,14 +3,14 @@
     <form id="logIn-form1" class="list">
       <div class="spacer" style="width: 300px; height: 62px;"></div>
       <label class="item item-input item-floating-label" id="logIn-input5">
-        <input type="text" placeholder="Username">
+        <input type="email" placeholder="Email">
       </label>
       <label class="item item-input item-floating-label" id="logIn-input6">
-        <input type="text" placeholder="Password">
+        <input type="password" placeholder="Password">
       </label>
       <div class="spacer" style="width: 300px; height: 43px;"></div>
     </form>
-    <a ui-sref="menu.logbook" id="logIn-button1" class="button button-dark  button-block">Login</a>
+    <a ng-click="login()" id="logIn-button1" class="button button-dark  button-block">Login</a>
     <a ui-sref="signUp" id="logIn-button2" style="color:#B1B1B1;" class="button button-stable  button-block button-clear">Or create an account ? Sign up</a>
   </ion-content>
 </ion-view>
