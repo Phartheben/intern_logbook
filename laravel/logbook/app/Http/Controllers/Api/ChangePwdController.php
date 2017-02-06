@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Api;
 
 use \App\Http\Controllers\AppController;
 
-class ActivityController extends AppController
+class ChangePwdController extends AppController
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +17,23 @@ class ActivityController extends AppController
         try {
             \DB::beginTransaction();
 
-            $model = new \App\Models\Activity;
-            $model = $model->where('isactive', '=', 1);
+            $model = new \App\Models\User;
+                        // ----@ add criteria here;
             $data  = $model->paginate();
 
-            $this->setResponseVar('response.meta', \DBHelper::toMeta($data)); 
+            $this->setResponseVar('response.meta', \DBHelper::toMeta($data));
+
+            // ---- either
             $this->setResponseVar('response.resources', \DBHelper::toResource($data));
+
+            // ---- or
+            // $resources = [];
+            // foreach ($data as $record) {
+            //     $resource = $record->toResource();
+
+            //     $resources[] = $resource;
+            // }
+            // $this->setResponseVar('response.resources', $resources);
 
             \DB::commit();
         } catch (Exception $e) {
@@ -44,7 +55,7 @@ class ActivityController extends AppController
     {
         // $businessId = session('myBusinessId');
 
-        $data = new \App\Models\Activity;
+        $data = new \App\Models\User;
 
         // setup validator
         $rules    = [];
@@ -52,8 +63,7 @@ class ActivityController extends AppController
         $input    = request()->all();
 
         // rules
-        $rules['description'] = 'required';
-        // $rules['date'] = 'required';
+        $rules['field'] = 'required';
 
         // validate
         $validator = \Validator::make($input, $rules, $messages);
@@ -105,10 +115,8 @@ class ActivityController extends AppController
         try {
             \DB::beginTransaction();
 
-            $model = new \App\Models\Activity;
-            $model = $model 
-                           ->where('id', '=', $id)
-                           ->where('isactive', '=', 1);
+            $model = new \App\Models\User;
+                        // ----@ add criteria here;
             $data  = $model->first();
 
             if ($data) {
@@ -138,8 +146,8 @@ class ActivityController extends AppController
     {
         // $businessId = session('myBusinessId');
 
-        $model = new \App\Models\Activity;
-        $model = $model->where('id', '=', $id);
+        $model = new \App\Models\User;
+                        // ----@ add criteria here;
         $data  = $model->first();
 
 
@@ -151,7 +159,7 @@ class ActivityController extends AppController
             $input    = request()->all();
 
             // rules
-            $rules['field']     = 'required';
+            $rules['password']  = 'required';
 
             // validate
             $validator = \Validator::make($input, $rules, $messages);
@@ -202,10 +210,8 @@ class ActivityController extends AppController
     {
         // $businessId = session('myBusinessId');
 
-        $model = new \App\Models\Activity;
-        $model = $model 
-                        ->where('id', '=', $id)
-                        ->where('isactive', '=', 1);
+        $model = new \App\Models\User;
+                        // ----@ add criteria here;
         $data  = $model->first();
 
         if ($data) {
@@ -240,7 +246,6 @@ class ActivityController extends AppController
 
     private function bindInput($data, $input)
     {
-        $data->description = array_get($input, 'description');
-        $data->date = \Carbon\Carbon::parse(array_get($input, 'date'), 'Asia/Kuala_Lumpur');
+        $data->password  = \Hash::make(array_get($input, 'password'));
     }
 }

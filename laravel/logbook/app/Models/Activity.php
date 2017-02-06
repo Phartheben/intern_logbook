@@ -16,6 +16,7 @@ class Activity extends Model
      * @var string
      */
     protected $table = 'activity';
+    protected $dates = ['date'];
 
     // ---- relationships
 

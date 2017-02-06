@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
 // })->middleware('auth:api');
-/*if (isset($_SERVER['HTTP_ORIGIN'])) {
+if (isset($_SERVER['HTTP_ORIGIN'])) {
         header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
         header('Access-Control-Allow-Credentials: true');
         header('Access-Control-Max-Age: 86400');    // cache for 1 day
@@ -33,7 +33,7 @@ use Illuminate\Http\Request;
  
         exit(0);
     }
-*/
+
 Route::group(['middleware' => 'auth:api'], function () {
 	Route::resource('user', '\App\Http\Controllers\Api\UserController');
 	Route::resource('role', '\App\Http\Controllers\Api\RoleController');

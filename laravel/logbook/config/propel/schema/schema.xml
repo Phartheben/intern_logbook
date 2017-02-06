@@ -5,6 +5,7 @@
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="description" type="varchar" size="255"/>
         <column name="isactive" type="tinyint" defaultValue='1'/>
+        <column name="date" type="date"/>
         <column name="user_id" type="integer" size="11"/>
         <column name="company_id" type="integer" size="11"/>
         <column name="created_at" type="timestamp"/>
