@@ -1,17 +1,32 @@
-<ion-view title="" id="page6">
+<form ng-app="myApp" 
+< name="myForm" novalidate>
+<html ng-app="validation">
+
+<ion-view title="Change Password" id="page6">
   <ion-content padding="true" class="has-header">
     <div class="spacer" style="width: 300px; height: 55px;"></div>
     <form id="page6-form3" class="list">
       <label class="item item-input item-stacked-label" id="page6-input11">
-        <input type="password" placeholder="Change password">
+      <input type="password" placeholder="Change password" name="password" ng-model="data.password" ccng-minlength="6" ng-maxlength="16" required/>
+      <div ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required || (form.password.$error.minlength || form.password.$error.maxlength)}">
+      <span ng-show="myForm.password.$error.minlength || myForm.password.$error.maxlength" class="help-block">Password must be 6-16 character long</span>
+      <span ng-show="myForm.password.$dirty && myForm.password.$error.required" class="help-block">Password is required</span>
+       </div>
       </label>
     </form>
     <form id="page6-form6" class="list">
       <label class="item item-input" id="page6-input16">
-        <input type="password" placeholder="Confirm password">
+      <div ng-class="{ 'has-error': (myForm.confirmPassword.$dirty && myForm.confirmPassword.$error.required) || myForm.confirmPassword.$error.passwordVerify }">
+      <input type="password" placeholder="Confirm password" name="confirmPassword" class="form-control" ng-model="confirmPassword" valid-password="myForm.password"  required password-verify="data.password">
+      <span style="color:grey" >
+      <span ng-show="myForm.confirmPassword.$dirty && myForm.confirmPassword.$error.required" class="help-block">Confirm Password is required.</span>
+      <span ng-show="myForm.confirmPassword.$error.passwordVerify" class="help-block">Please make sure the password is matched.
+      </span>
+      </span>
+      </div>
       </label>
     </form>
     <div class="spacer" style="width: 300px; height: 34px;"></div>
-    <a ui-sref="menu.logbook" id="page6-button8" class="button button-dark  button-block">CHANGE PASSWORD</a>
+    <a ng-click="changepwd()" id="page6-button8" class="button button-dark  button-block" ng-disabled=myForm.$invalid>CHANGE PASSWORD</a>
   </ion-content>
 </ion-view>

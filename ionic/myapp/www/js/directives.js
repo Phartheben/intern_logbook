@@ -1,33 +1,98 @@
 angular.module('app.directives', [])
 
-.directive('blankDirective', [function(){
+.directive('passwordVerify', function() {
+    return {
+        require: 'ngModel',
+        link: function(scope, elem, attrs, ctrl) {
+            if (!attrs.passwordVerify) {
+                return;
+            }
+            scope.$watch(attrs.passwordVerify, function(value) {
+                if (value === ctrl.$viewValue && value !== undefined) {
+                    ctrl.$setValidity('passwordVerify', true);
+                    ctrl.$setValidity("parse", undefined);
+                } else {
+                    ctrl.$setValidity('passwordVerify', false);
+                }
+            });
+            ctrl.$parsers.push(function(value) {
+                var isValid = value === scope.$eval(attrs.passwordVerify);
+                ctrl.$setValidity('passwordVerify', isValid);
+                return isValid ? value : undefined;
+            });
+        }
+    };
+})
 
-}]);
-var app = angular.module('myApp', []);
+.directive('fileModel', ['$parse', function($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
 
-app.directive('validPasswordC', function() {
-  return {
-    require: 'ngModel',
-    scope: {
+            element.bind('change', function() {
+                scope.$apply(function() {
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}])
 
-      reference: '=validPasswordC'
+.directive('file', function() {
+    return {
+        scope: {
+            avatar: '='
+        },
+        link: function(scope, el, attrs) {
+            el.bind('change', function(event) {
+                var file = event.target.files[0];
+                scope.file = file ? file : undefined;
+                scope.$apply();
+            });
+        }
+    };
+})
 
-    },
-    link: function(scope, elm, attrs, ctrl) {
-      ctrl.$parsers.unshift(function(viewValue, $scope) {
+.directive('httpSrc', [
+    '$http', function ($http) {
+        var directive = {
+            link: link,
+            restrict: 'A'
+        };
+        return directive;
 
-        var noMatch = viewValue != scope.reference
-        ctrl.$setValidity('noMatch', !noMatch);
-        return (noMatch)?noMatch:!noMatch;
-      });
+        function link(scope, element, attrs) {
+            var requestConfig = {
+                method: 'GET',
+                url: 'https://localhost:8443/logbook/api/'+attrs.httpSrc,
+                responseType: 'arraybuffer',
+                cache: 'true',
+                headers: {
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('access_token'),
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+                    'Access-Control-Allow-Headers': 'X-Auth-Token, Origin, Content-Type, Accept, Authorization, X-Request-With',
+                },
+            };
 
-      scope.$watch("reference", function(value) {;
-        ctrl.$setValidity('noMatch', value === ctrl.$viewValue);
+            $http(requestConfig)
+                .success(function(data) {
+                    var arr = new Uint8Array(data);
 
-      });
+                    var raw = '';
+                    var i, j, subArray, chunk = 5000;
+                    for (i = 0, j = arr.length; i < j; i += chunk) {
+                        subArray = arr.subarray(i, i + chunk);
+                        raw += String.fromCharCode.apply(null, subArray);
+                    }
+
+                    var b64 = btoa(raw);
+
+                    attrs.$set('src', "data:image/jpeg;base64," + b64);
+                });
+        }
+
     }
-  }
-});
-app.controller('signUpCtrl', function($scope){
-
-});
+]);

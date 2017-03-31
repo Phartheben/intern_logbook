@@ -151,7 +151,11 @@ class UserController extends AppController
             // rules
             $rules['email']     = 'required|email';
             $rules['firstname'] = 'required';
-            $rules['lastname']  = 'required';            
+            $rules['lastname']  = 'required';  
+
+            $path = $request->file('avatar')->store('avatars');
+
+            return $path;          
 
             // validate
             $validator = \Validator::make($input, $rules, $messages);

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use \App\Http\Controllers\AppController;
+use \App\Models\Activity;
 
 class ActivityController extends AppController
 {
@@ -18,7 +19,8 @@ class ActivityController extends AppController
             \DB::beginTransaction();
 
             $model = new \App\Models\Activity;
-            $model = $model->where('isactive', '=', 1);
+            $model = $model->where('user_id', '=', \Auth::id())
+                           ->where('isactive', '=', 1);
             $data  = $model->paginate();
 
             $this->setResponseVar('response.meta', \DBHelper::toMeta($data)); 
@@ -53,7 +55,8 @@ class ActivityController extends AppController
 
         // rules
         $rules['description'] = 'required';
-        // $rules['date'] = 'required';
+        $rules['date'] = 'required|date|after:today';
+        $rules['date'] = 'required|date';
 
         // validate
         $validator = \Validator::make($input, $rules, $messages);
@@ -66,6 +69,7 @@ class ActivityController extends AppController
                 // ----@ set data here
 
                 $this->bindInput($data, $input);
+                $data->user_id = session('myUserId');
                 $data->save();
 
                 // set data to response
@@ -100,31 +104,17 @@ class ActivityController extends AppController
      */
     public function show($id)
     {
-        // $businessId = session('myBusinessId');
+        // $activity = \App\Models\User::find(\Auth::user_id());
 
-        try {
-            \DB::beginTransaction();
+        \Log::debug($id);
 
-            $model = new \App\Models\Activity;
-            $model = $model 
-                           ->where('id', '=', $id)
-                           ->where('isactive', '=', 1);
-            $data  = $model->first();
+        $activity = \App\Models\Activity
+                        ::where('user_id', '=', \Auth::id())
+                        ->where('id', '=', $id)
+                        ->first();
 
-            if ($data) {
-                $this->setResponseVar('response.resource', \DBHelper::toResource($data));
-            } else {
-                $this->setResponseMessage(trans('messages.not_found'), 404);
-            }
-
-            \DB::commit();
-        } catch (Exception $e) {
-            \DB::rollback();
-
-            $this->setResponseMessage($e->getMessage(), 400);
-        }
-
-        return response()->json($this->getResponseData(), $this->getResponseCode());
+        return view('show', ['activity' => $activity]);
+    
     }
 
     /**
@@ -151,7 +141,7 @@ class ActivityController extends AppController
             $input    = request()->all();
 
             // rules
-            $rules['field']     = 'required';
+            // $rules['field']     = 'required';
 
             // validate
             $validator = \Validator::make($input, $rules, $messages);

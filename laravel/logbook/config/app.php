@@ -181,6 +181,9 @@ return [
         // vendors
         Laravel\Passport\PassportServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+
+        //php excel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -228,11 +231,14 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class, 
 
         'DateTimeHelper' => \App\Vetter\Helpers\DateTimeHelper::class,
         'DBHelper'       => \App\Vetter\Helpers\DBHelper::class,
         'DebugHelper'    => \App\Vetter\Helpers\DebugHelper::class,
         'PropelHelper'   => \App\Vetter\Helpers\PropelHelper::class,
+
 
     ],
 

@@ -83,10 +83,13 @@ class Activity extends Model
 
         // on create
         static::creating(function ($record) {
+            $record->created_by = session('myUserId');
+            $record->updated_by = $record->created_by;
         });
 
         // on update
         static::updating(function ($record) {
+            $record->updated_by = session('myUserId');
         });
 
         // after save

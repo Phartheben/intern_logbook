@@ -63,6 +63,7 @@ class CompanyController extends AppController
         $input    = request()->all();
 
         // rules
+        $rules['name'] = 'required';
         $rules['location'] = 'required';
 
         // validate
@@ -76,6 +77,7 @@ class CompanyController extends AppController
                 // ----@ set data here
 
                 $this->bindInput($data, $input);
+                $data->id = session('myUserId');
                 $data->save();
 
                 // set data to response
@@ -108,6 +110,27 @@ class CompanyController extends AppController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function showCom()
+    {
+        $company = \App\Models\Company
+                            ::where('id', '=', \Auth::id())
+                            ->first();
+
+        $this->setResponseVar('response.resource', \DBHelper::toResource($company));
+
+        return response()->json($this->getResponseData(), $this->getResponseCode());
+        // return view('showIns', ['institution' => $institution]);
+    
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         // $businessId = session('myBusinessId');
@@ -117,7 +140,7 @@ class CompanyController extends AppController
 
             $model = new \App\Models\Company;
             $model = $model->where('id', '=', $id)
-                       ->where('isactive', '=', 1);
+                           ->where('isactive', '=', 1);
             $data  = $model->first();
 
             if ($data) {
@@ -249,6 +272,7 @@ class CompanyController extends AppController
 
     private function bindInput($data, $input)
     {
+        $data->name = array_get($input, 'name');
         $data->location = array_get($input, 'location');
     }
 }

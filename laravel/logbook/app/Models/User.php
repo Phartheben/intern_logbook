@@ -29,46 +29,8 @@ class User extends Model
     {
         $resource = parent::toResource($params);
 
-        // ---- use this to format output, else remove
-        // $tmpResource = [];
-        // foreach ($resource as $key => $value) {
-
-        //     switch ($key) {
-                // case 'fieldName' :
-                //     $key = 'newFieldName';
-
-                //     if ($object = $this->object) {
-                //         $value = $object->asIdLabel();
-                //     } else {
-                //         $value = [];
-                //     }
-                //     break;
-        //     }
-
-            // $tmpResource[$key] = $value;
-        // }
-        // $resource = $tmpResource;
-
-
-        // ---- use this to format output from extended keys, else remove
-        // $extended = array_get($params, 'extended', []);
-
-        // if ($extended) {
-        //     if (in_array('key', $extended)) {
-        //         $resource['extended']['key'] = 'resource here';
-        //     }
-        // }
-
-
         return $resource;
     }
-
-    // public function asIdLabel() {
-    //     return [
-    //         'id' => $this->id,
-    //         'label' => ''
-    //     ];
-    // }
 
     // ---- statics methods
 

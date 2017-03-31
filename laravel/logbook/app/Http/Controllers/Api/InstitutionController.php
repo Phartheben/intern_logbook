@@ -53,7 +53,7 @@ class InstitutionController extends AppController
      */
     public function store()
     {
-        // $businessId = session('myBusinessId');
+        $data = \App\Models\User::find(\Auth::id());
 
         $data = new \App\Models\Institution;
 
@@ -63,7 +63,9 @@ class InstitutionController extends AppController
         $input    = request()->all();
 
         // rules
+        $rules['name'] = 'required';
         $rules['intake'] = 'required';
+        $rules['location'] = 'required';
 
         // validate
         $validator = \Validator::make($input, $rules, $messages);
@@ -76,6 +78,7 @@ class InstitutionController extends AppController
                 // ----@ set data here
 
                 $this->bindInput($data, $input);
+                $data->id = session('myUserId');
                 $data->save();
 
                 // set data to response
@@ -134,6 +137,26 @@ class InstitutionController extends AppController
         }
 
         return response()->json($this->getResponseData(), $this->getResponseCode());
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+     public function showIns()
+    {
+        $institution = \App\Models\Institution
+                            ::where('id', '=', \Auth::id())
+                            ->first();
+
+        $this->setResponseVar('response.resource', \DBHelper::toResource($institution));
+
+        return response()->json($this->getResponseData(), $this->getResponseCode());
+        // return view('showIns', ['institution' => $institution]);
+    
     }
 
     /**
@@ -249,6 +272,8 @@ class InstitutionController extends AppController
 
     private function bindInput($data, $input)
     {
+        $data->name = array_get($input, 'name');
         $data->intake = array_get($input, 'intake');
+        $data->location = array_get($input, 'location');
     }
 }

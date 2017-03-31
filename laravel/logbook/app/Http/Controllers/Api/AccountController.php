@@ -65,10 +65,7 @@ class AccountController extends AppController
         }
 
         return response()->json($this->getResponseData(), $this->getResponseCode());
-               
-          
     }
-
 
     private function bindInput($data, $input)
     {

@@ -3,7 +3,7 @@
     <form id="logbook5-form12" class="list">
       <label class="item item-input" id="logbook5-input23">
         <span class="input-label">Date</span>
-        <input type="Date" placeholder="" name="date" ng-model="data.date">
+        <input type="date" ui-date="{dateFormat: 'yy-mm-dd'}" ui-date-format="yy-mm-dd" placeholder="" name="date" ng-model-options="{timezone:'Asia/Kuala_Lumpur'}" ng-model="data.date">
       </label>
       <div class="spacer" style="width: 300px; height: 23px;"></div>
       <label class="item item-input" id="logbook5-textarea1">

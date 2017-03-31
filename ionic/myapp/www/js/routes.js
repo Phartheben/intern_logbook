@@ -10,7 +10,7 @@ angular.module('app.routes', [])
     
   
 
-      .state('logIn', {
+  .state('logIn', {
     url: '/login',
     templateUrl: 'templates/logIn.html',
     controller: 'logInCtrl'
@@ -59,11 +59,31 @@ angular.module('app.routes', [])
   })
 
   .state('menu.page7', {
-    url: '/chge_email',
+    url: '/update_profpic',
     views: {
       'side-menu21': {
         templateUrl: 'templates/page7.html',
         controller: 'page7Ctrl'
+      }
+    }
+  })
+
+   .state('menu.page21', {
+    url: '/add_company',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/page21.html',
+        controller: 'page21Ctrl'
+      }
+    }
+  })
+
+   .state('menu.page22', {
+    url: '/add_institution',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/page22.html',
+        controller: 'page22Ctrl'
       }
     }
   })
@@ -128,31 +148,12 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('menu.pDFSummary', {
-    url: '/PDF_summary',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/pDFSummary.html',
-        controller: 'pDFSummaryCtrl'
-      }
-    }
-  })
-
   .state('logbook4', {
     url: '/page9',
     templateUrl: 'templates/logbook4.html',
     controller: 'logbook4Ctrl'
   })
 
-  .state('menu.cSVSummary', {
-    url: '/csv_summary',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/cSVSummary.html',
-        controller: 'cSVSummaryCtrl'
-      }
-    }
-  })
 
   .state('menu.logbook5', {
     url: '/new entry',

@@ -1,17 +1,18 @@
-<ion-view title="" id="page7">
-  <ion-content padding="true" class="has-header">
-    <div class="spacer" style="width: 300px; height: 58px;"></div>
-    <form id="page7-form4" class="list">
-      <label class="item item-input" id="page7-input12">
-        <input type="email" placeholder="New email">
-      </label>
-    </form>
-    <form id="page7-form5" class="list">
-      <label class="item item-input" id="page7-input15">
-        <input type="email" placeholder="Confirm email">
-      </label>
-    </form>
-    <div class="spacer" style="width: 300px; height: 29px;"></div>
-    <a ui-sref="menu.logbook" id="page7-button9" class="button button-dark  button-block">CHANGE EMAIL</a>
-  </ion-content>
-</ion-view>
+<form ng-app="myApp" < name="myForm" novalidate>
+    <html ng-app="validation">
+    <ion-view title="" id="page7">
+        <ion-pane>
+            <ion-header-bar class="bar-stable">
+                <h1 class="title">Summary</h1>
+            </ion-header-bar>
+            <ion-content ng-controller="page7Ctrl">
+                <input type="file" file-model="data.avatar" />
+                <input type="button" ng-click="UploadPicture()" class="button button-block button-dark" value="Upload" />
+                <li ng-repeat="file in files">{{user.avatar}}</li>
+                </div>
+            </ion-content>
+        </ion-pane>
+    </ion-view>
+
+    </html>
+</form>

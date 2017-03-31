@@ -4,12 +4,21 @@
   "description": "myapp: An Ionic project",
   "dependencies": {
     "@ionic/storage": "^1.1.7",
+    "angular-datetime-input": "^5.1.0",
+    "angular-resource": "^1.3.6",
+    "angular-webstorage": "^0.1.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "datepicker-for-ionic": "^1.1.7",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
     "gulp-rename": "^1.2.0",
     "gulp-sass": "^2.0.4",
-    "ionic-native": "^2.4.1"
+    "ionic-datepicker": "^1.2.1",
+    "ionic-native": "^2.4.1",
+    "moment": "^2.17.1",
+    "ng2-file-upload": "^1.2.0"
   },
   "devDependencies": {
     "bower": "^1.3.3",
@@ -22,7 +31,9 @@
     "cordova-plugin-statusbar",
     "cordova-plugin-device",
     "ionic-plugin-keyboard",
-    "cordova-plugin-splashscreen"
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-camera",
+    "cordova-plugin-file-transfer"
   ],
   "cordovaPlatforms": []
 }

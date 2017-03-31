@@ -35,6 +35,7 @@
     <table name="company" phpName="Company">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="isactive" type="tinyint" defaultValue='1'/>
+        <column name="name" type="varchar" size="255"/>
         <column name="location" type="varchar" size="255"/>
         <column name="created_at" type="timestamp"/>
         <column name="created_by" type="integer" size="11"/>
@@ -43,8 +44,10 @@
     </table>
     <table name="institution" phpName="Institution">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
-        <column name="isactive" type="tinyint" defaultValue='1'/>
+        <column name="name" type="varchar" size="255"/>
         <column name="intake" type="varchar" size="255"/>
+        <column name="location" type="varchar" size="255"/>
+        <column name="isactive" type="tinyint" defaultValue='1'/>
         <column name="created_at" type="timestamp"/>
         <column name="created_by" type="integer" size="11"/>
         <column name="updated_at" type="timestamp"/>
@@ -133,12 +136,21 @@
         <column name="updated_at" type="timestamp"/>
         <column name="updated_by" type="integer" size="11"/>
     </table>
+    <table name="sessions" phpName="Session">
+        <column name="id" type="varchar" size="255" required="true" primaryKey="true"/>
+        <column name="user_id" type="integer" size="11"/>
+        <column name="ip_address" type="varchar" size="45"/>
+        <column name="user_agent" type="longvarchar"/>
+        <column name="payload" type="longvarchar"/>
+        <column name="last_activity" type="integer" size="11"/>
+    </table>
     <table name="user" phpName="User">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="firstname" type="varchar" size="255"/>
         <column name="lastname" type="varchar" size="255"/>
         <column name="email" type="varchar" size="255"/>
         <column name="password" type="varchar" size="255"/>
+        <column name="avatar" type="varchar" size="255"/>
         <column name="remember_token" type="varchar" size="100"/>
         <column name="role_id" type="integer"/>
         <column name="isactive" type="tinyint" defaultValue='1'/>

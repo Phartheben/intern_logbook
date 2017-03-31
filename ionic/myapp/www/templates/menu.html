@@ -1,40 +1,42 @@
 <ion-side-menus enable-menu-with-back-views="true">
-  <ion-side-menu-content>
-    <ion-nav-bar class="bar-dark">
-      <ion-nav-back-button></ion-nav-back-button>
-      <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
-      </ion-nav-buttons>
-    </ion-nav-bar>
-    <ion-nav-view name="side-menu21"></ion-nav-view>
-  </ion-side-menu-content>
-  <ion-side-menu side="left" id="side-menu21" style="background-color:#030303;">
-    <ion-header-bar class="bar-dark">
-      <div class="title">Menu</div>
-    </ion-header-bar>
-    <ion-content padding="false" class="side-menu-left has-header side-menu-gradient">
-      <div class="spacer" style="width: 268px; height: 20px;"></div>
-      <div class="profile-image">
-        <a style="display:block;" href="mailto:">
-          <img src="img/tcBFmuE5QgKUl1A2k9Wd_11062011418.jpg" style="display: block; width: 40%; height: auto; margin-left: auto; margin-right: auto;">
-        </a>
-      </div>
-      <h3 id="menu-heading5" style="color:#FFF8F8;font-weight:300;text-align:center;">Khaas</h3>
-      <div class="spacer" style="width: 268px; height: 18px;"></div>
-      <ion-list id="menu-list1">
-        <ion-item class="item-icon-right dark  side-menu-item" id="menu-list-item2" ui-sref="menu.logbook" menu-close="">Logbook
-          <i class="icon ion-ios-bookmarks-outline"></i>
-        </ion-item>
-        <ion-item class="item-icon-right  side-menu-item" id="menu-list-item7" ui-sref="menu.settings" menu-close="">Settings
-          <i class="icon ion-android-settings"></i>
-        </ion-item>
-        <ion-item class="item-icon-right  side-menu-item" id="menu-list-item24" ui-sref="menu.summary" menu-close="">Summary
-          <i class="icon ion-document"></i>
-        </ion-item>
-        <ion-item class="item-icon-right  side-menu-item" id="menu-list-item8">Sign out
-          <i class="icon ion-android-exit"></i>
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-side-menu>
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-dark">
+            <ion-nav-back-button></ion-nav-back-button>
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view name="side-menu21"></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left" id="side-menu21" style="background-color:#030303;">
+        <ion-header-bar class="bar-dark">
+            <div class="title">Menu</div>
+        </ion-header-bar>
+        <ion-content padding="false" class="side-menu-left has-header side-menu-gradient">
+            <div class="spacer" style="width: 268px; height: 20px;"></div>
+            <div class="profile-image">
+                <a style="display:block;">
+                    <img http-src="profile/showAvatar" style="display: block; width: 40%; height: auto; margin-left: auto; margin-right: auto;">
+                </a>
+            </div>
+            <h3 id="menu-heading5" style="color:#FFF8F8;font-weight:300;text-align:center;">Name :{{data.profile.firstname}}</h3>
+            <h3 id="menu-heading5" style="color:#FFF8F8;font-weight:300;text-align:center;">{{data.institution.name}}</h3>
+            <h3 id="menu-heading5" style="color:#FFF8F8;font-weight:300;text-align:center;">Company:{{data.company.name}}</h3>
+            <div class="spacer" style="width: 268px; height: 18px;"></div>
+            <ion-list id="menu-list1">
+                <ion-item class="item-icon-right dark  side-menu-item" id="menu-list-item2" ui-sref="menu.logbook" menu-close="">Logbook
+                    <i class="icon ion-ios-bookmarks-outline"></i>
+                </ion-item>
+                <ion-item class="item-icon-right  side-menu-item" id="menu-list-item7" ui-sref="menu.settings" menu-close="">Settings
+                    <i class="icon ion-android-settings"></i>
+                </ion-item>
+                <ion-item class="item-icon-right  side-menu-item" id="menu-list-item24" ui-sref="menu.summary" menu-close="">Summary
+                    <i class="icon ion-document"></i>
+                </ion-item>
+                <ion-item class="item-icon-right  side-menu-item" id="menu-list-item8" ui-sref="logIn">Sign out
+                    <i class="icon ion-android-exit"></i>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
 </ion-side-menus>

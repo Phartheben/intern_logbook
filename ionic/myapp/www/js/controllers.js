@@ -47,10 +47,11 @@ angular.module('app.controllers', [])
     }
 ])
 
-.controller('signUpCtrl', ['$scope', '$stateParams', '$location', '$http', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('signUpCtrl', ['$scope', '$stateParams', '$location', '$http',
+    'accountService', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
     // You can include any angular dependencies as parameters for this function
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams, $location, $http) {
+    function($scope, $stateParams, $location, $http, accountService) {
 
         $scope.data = {
             firstname: '',
@@ -58,11 +59,128 @@ angular.module('app.controllers', [])
             email: '',
             password: '',
         }
+
         $scope.create = function() {
+            accountService.getAccount($scope.data).then(function() {
+                $location.path('/side-menu21/logbook');
+            });
+
+        }
+
+    }
+])
+
+.controller('menuCtrl', ['$scope', '$stateParams', '$location', '$http',
+    'accountService',
+    // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+    // You can include any angular dependencies as parameters for this function
+    // TIP: Access Route Parameters for your page via $stateParams.parameterName
+    function($scope, $stateParams, $location, $http, accountService) {
+
+        $scope.data = {};
+
+        accountService.getProfile()
+            .then(function(response) {
+                $scope.data.profile = response.data.response.resource;
+                console.log($scope.data.profile);
+            })
+
+        accountService.getIns()
+            .then(function(response) {
+                $scope.data.institution = response.data.response.resource;
+                console.log($scope.data.institution);
+            })
+
+        accountService.getCom()
+            .then(function(response) {
+                $scope.data.company = response.data.response.resource;
+                console.log($scope.data.company);
+            });
+    }
+])
+
+.controller('logbookCtrl', ['$scope', '$stateParams', '$location', '$http',
+    'activityService',
+    // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+    // You can include any angular dependencies as parameters for this function
+    // TIP: Access Route Parameters for your page via $stateParams.parameterName
+    function($scope, $stateParams, $location, $http, activityService) {
+
+        $scope.data = {};
+
+        $scope.update = function(id) {
+                $http({
+                        url: 'https://localhost:8443/logbook/api/activity',
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': 'Bearer ' + window.localStorage.getItem('access_token'),
+                            'Access-Control-Allow-Origin': '*',
+                            'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+                            'Access-Control-Allow-Headers': 'X-Auth-Token, Origin, Content-Type, Accept, Authorization, X-Request-With',
+                        },
+                        data: $scope.data,
+                    })
+                    .success(function(response) {
+                        console.log(response);
+                    })
+                    .error(function(response) {
+                        console.log("Error");
+                    });
+
+            },
+
+            $scope.delete = function(id) {
+                $http({
+                        url: 'https://localhost:8443/logbook/api/activity/' + id, 
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': 'Bearer ' + window.localStorage.getItem('access_token'),
+                            'Access-Control-Allow-Origin': '*',
+                            'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE',
+                            'Access-Control-Allow-Headers': 'X-Auth-Token, Origin, Content-Type, Accept, Authorization, X-Request-With',
+                            // 'Content-Type': 'application/json',
+                        },
+                        data: $scope.data,
+                    })
+                    .success(function(response) {
+                        console.log(response);
+                    })
+                    .error(function(response) {
+                        console.log(response);
+                    });
+            },
+
+            activityService.getActivities()
+            .then(function(response) {
+                $scope.activities = response.data.response.resources;
+            });
+    }
+])
+
+.controller('settingsCtrl', ['$scope', '$stateParams', '$location', '$http', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+    // You can include any angular dependencies as parameters for this function
+    // TIP: Access Route Parameters for your page via $stateParams.parameterName
+    function($scope, $stateParams, $location, $http) {
+
+
+    }
+])
+
+.controller('page6Ctrl', ['$scope', '$stateParams', '$location', '$http',
+    // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+    // You can include any angular dependencies as parameters for this function
+    // TIP: Access Route Parameters for your page via $stateParams.parameterName
+    function($scope, $stateParams, $location, $http) {
+
+        $scope.data = {
+            password: '',
+        }
+        $scope.changepwd = function() {
             $http({
-                    url: 'https://localhost:8443/logbook/api/account/sign-up',
+                    url: 'https://localhost:8443/logbook/api/profile/password',
                     method: 'POST',
                     headers: {
+                        'Authorization': 'Bearer ' + window.localStorage.getItem('access_token'),
                         'Access-Control-Allow-Origin': '*',
                         'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
                         'Access-Control-Allow-Headers': 'X-Auth-Token, Origin, Content-Type, Accept, Authorization, X-Request-With',
@@ -76,47 +194,7 @@ angular.module('app.controllers', [])
                     console.log("Error");
                 });
 
-            // console.log('create');
-            // if ($scope.data.firstName =' ') {
-            // $location.path('/side-menu21/logbook');
-            // }
         }
-
-    }
-])
-
-.controller('menuCtrl', ['$scope', '$stateParams', '$location', '$http', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams, $location, $http) {
-
-
-    }
-])
-
-.controller('logbookCtrl', ['$scope', '$stateParams', '$location', '$http', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams, $location, $http) {
-
-
-    }
-])
-
-.controller('settingsCtrl', ['$scope', '$stateParams', '$location', '$http', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams, $location, $http) {
-
-
-    }
-])
-
-.controller('page6Ctrl', ['$scope', '$stateParams', '$location', '$http', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams, $location, $http) {
-
 
     }
 ])
@@ -125,8 +203,81 @@ angular.module('app.controllers', [])
     // You can include any angular dependencies as parameters for this function
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
     function($scope, $stateParams, $location, $http) {
+        $scope.data = {
+            avatar: '',
+        }
 
+        $scope.getImage = function(data) {
+            return 'data:image/jpeg;base64,' + data;
+        }
 
+        var formdata = new FormData();
+        $scope.getTheFiles = function($files) {
+            angular.forEach($files, function(value, key) {
+                formdata.append('avatar', $scope.UploadPicture);
+            });
+        };
+        $scope.UploadPicture = function() {
+
+            var fd = new FormData();
+            fd.append('avatar', $scope.data.avatar);
+            // console.log($scope.data.avatar);
+            var request = {
+                method: 'POST',
+                url: 'https://localhost:8443/logbook/api/profile/avatar',
+                data: fd,
+                transformRequest: angular.identity,
+                headers: {
+                    'Content-Type': undefined,
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('access_token'),
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+                    'Access-Control-Allow-Headers': 'multipart/form-data, X-Auth-Token, Origin, Content-Type, Accept, Authorization, X-Request-With',
+                }
+            };
+            $http(request)
+                .success(function(d) {
+                    alert(d);
+                })
+                .error(function() {});
+        }
+    }
+])
+
+.controller('page21Ctrl', ['$scope', '$stateParams', '$location', '$http',
+    'accountService', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+    // You can include any angular dependencies as parameters for this function
+    // TIP: Access Route Parameters for your page via $stateParams.parameterName
+    function($scope, $stateParams, $location, $http, accountService) {
+
+        $scope.data = {
+            name: '',
+            location: '',
+        }
+        $scope.addCompany = function() {
+            accountService.addCompany($scope.data).then(function() {
+                $location.path('/side-menu21/logbook');
+            });
+        }
+    }
+])
+
+.controller('page22Ctrl', ['$scope', '$stateParams', '$location', '$http',
+    'accountService', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+    // You can include any angular dependencies as parameters for this function
+    // TIP: Access Route Parameters for your page via $stateParams.parameterName
+    function($scope, $stateParams, $location, $http, accountService) {
+
+        $scope.data = {
+            name: '',
+            intake: '',
+            location: '',
+        }
+        $scope.addInstitution = function() {
+            accountService.addInstitution($scope.data).then(function() {
+                $location.path('/side-menu21/logbook');
+            });
+        }
     }
 ])
 
@@ -166,12 +317,70 @@ angular.module('app.controllers', [])
     }
 ])
 
-.controller('summaryCtrl', ['$scope', '$stateParams', '$location', '$http', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('summaryCtrl', ['$scope', '$stateParams', '$location', '$http',
+    'activityService',
+    // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
     // You can include any angular dependencies as parameters for this function
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams, $location, $http) {
+    function($scope, $stateParams, $location, $http, activityService) {
 
+        $scope.data = {
+            description: '',
+            date: '',
+        }
 
+        $scope.generatePDF = function() {
+                $http({
+                        url: 'https://localhost:8443/logbook/api/getPDF',
+                        method: 'GET',
+                        responseType: 'arraybuffer',
+                        type: "application/octet-stream",
+                        accept: 'application/pdf',
+                        cache: true,
+                        headers: {
+                            'Authorization': 'Bearer ' + window.localStorage.getItem('access_token'),
+                            'Access-Control-Allow-Origin': '*',
+                            'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+                            'Access-Control-Allow-Headers': 'X-Auth-Token, Origin, Content-Type, Accept, Authorization, X-Request-With',
+                        },
+                        data: $scope.data,
+                    })
+                    .success(function(response) {
+                        console.log(response);
+                    })
+                    .error(function(response) {
+                        console.log("Error");
+                    });
+
+            },
+
+            $scope.generateCSV = function() {
+                $http({
+                        url: 'https://localhost:8443/logbook/api/excel',
+                        method: 'GET',
+                        cache: false,
+                        responseType: 'arraybuffer',
+                        headers: {
+                            'Authorization': 'Bearer ' + window.localStorage.getItem('access_token'),
+                            'Access-Control-Allow-Origin': '*',
+                            'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+                            'Access-Control-Allow-Headers': 'X-Auth-Token, Origin, Content-Type, Accept, Authorization, X-Request-With',
+                        },
+                        data: $scope.data,
+                    })
+                    .success(function(response) {
+                        console.log(response);
+                    })
+                    .error(function(response) {
+                        console.log("Error");
+                    });
+
+            },
+
+            activityService.getActivities()
+            .then(function(response) {
+                $scope.activities = response.data.response.resources;
+            });
     }
 ])
 
@@ -179,39 +388,6 @@ angular.module('app.controllers', [])
     // You can include any angular dependencies as parameters for this function
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
     function($scope, $stateParams, $location, $http) {
-
-
-    }
-])
-
-.controller('pDFSummaryCtrl', ['$scope', '$stateParams', '$location', '$http', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams, $location, $http) {
-
-        $scope.generate = function() {
-            $http({
-                    url: 'https://localhost:8443/logbook/api/pdf',
-                    method: 'GET',
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-                        'Access-Control-Allow-Headers': 'X-Auth-Token, Origin, Content-Type, Accept, Authorization, X-Request-With',
-                    },
-                    data: $scope.description,
-                })
-                .success(function(response) {
-                    console.log(response);
-                })
-                .error(function(response) {
-                    console.log("Error");
-                });
-
-            // console.log('create');
-            // if ($scope.data.firstName =' ') {
-            // $location.path('/side-menu21/logbook');
-            // }
-        }
 
 
     }
@@ -225,72 +401,24 @@ angular.module('app.controllers', [])
     }
 ])
 
-.controller('cSVSummaryCtrl', ['$scope', '$stateParams', '$location', '$http', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('logbook5Ctrl', ['$scope', '$stateParams', '$http', '$location',
+    'activityService',
+    // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
     // You can include any angular dependencies as parameters for this function
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams, $location, $http) {
-
-        $scope.generateCSV = function() {
-            $http({
-                    url: 'https://localhost:8443/logbook/api/csv',
-                    method: 'GET',
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-                        'Access-Control-Allow-Headers': 'X-Auth-Token, Origin, Content-Type, Accept, Authorization, X-Request-With',
-                    },
-                    data: $scope.description,
-                })
-                .success(function(response) {
-                    console.log(response);
-                })
-                .error(function(response) {
-                    console.log("Error");
-                });
-
-            // console.log('create');
-            // if ($scope.data.firstName =' ') {
-            // $location.path('/side-menu21/logbook');
-            // }
-        }
-
-
-
-    }
-])
-
-.controller('logbook5Ctrl', ['$scope', '$stateParams', '$http', '$location', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams, $http, $location) {
+    function($scope, $stateParams, $http, $location, activityService) {
 
         $scope.data = {
             description: '',
             date: '',
 
         }
+
         $scope.submit = function() {
-            $http({
-                    url: 'https://localhost:8443/logbook/api/activity',
-                    method: 'POST',
-                    headers: {
-                        'Authorization': 'Bearer ' + window.localStorage.getItem('access_token'),
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-                        'Access-Control-Allow-Headers': 'X-Auth-Token, Origin, Content-Type, Accept, Authorization, X-Request-With',
-                    },
-                    data: $scope.data,
-                })
-                .success(function(response) {
-                    $location.path('/side-menu21/logbook');
-                })
-                .error(function(response) {
-                    console.log("Error");
-                })
-
+            activityService.addActivity($scope.data).then(function() {
+                $location.path('/side-menu21/logbook');
+            });
         }
-
-
     }
 ])
 

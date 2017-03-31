@@ -1,32 +1,17 @@
 <ion-view title="Summary" id="page11" style="background-color:#FFFFFF;" class="sum-item">
-  <ion-content padding="true" class="has-header">
-    <div id="summary-markdown21" class="show-list-numbers-and-dots">
-      <p style="color:#948888;">4:23:05 AM</p>
-
-      <p style="color:#948888;">3/1/2017</p>
-
-      <p style="color:#948888;">First Day</p>
-    </div>
-    <div id="summary-markdown19" class="show-list-numbers-and-dots">
-      <p style="color:#948888;">1:23:08 PM</p>
-
-      <p style="color:#948888;">2/1/2017</p>
-
-      <p style="color:#948888;">Public Holiday</p>
-    </div>
-    <div id="summary-markdown20" class="show-list-numbers-and-dots">
-      <p style="color:#948888;">9:30:08 PM</p>
-
-      <p style="color:#948888;">3/1/2017</p>
-
-      <p style="color:#948888;">Public Holiday</p>
-    </div>
-    <div id="summary-markdown17" class="show-list-numbers-and-dots"></div>
-    <div id="summary-button-bar1" class="button-bar">
-      <a ng-click="generateCSV()" id="summary-button16" class="button button-dark  button-block">CSV</a>
-      <a ng-click="generate()" id="summary-button17" class="button button-dark  button-block">PDF</a>
-    </div>
-    <a ui-sref="menu.monthlySummary" id="summary-button19" class="button button-dark  button-block">Monthly Summary</a>
-    <button id="summary-button20" class="button button-assertive  button-block">Delete All Entries</button>
-  </ion-content>
+    <ion-content padding="true" class="has-header">
+        <div ng-repeat="activity in activities">
+            <h5 style="color:#000000">{{activity.date | date}}</h5>
+            <div class="show-list-numbers-and-dots">
+                <p style="color: #000000">{{activity.description}}</p>
+            </div>
+        </div>
+        <div id="summary-markdown17" class="show-list-numbers-and-dots"></div>
+        <div id="summary-button-bar1" class="button-bar">
+            <a ng-click="generateCSV()" target="_blank" href="https://localhost:8443/logbook/api/excel" download="file_new_name.xls" id="summary-button16" class="button button-dark  button-block">CSV</a>
+            <a ng-click="generatePDF()" data="{{content}}" type="application/pdf" target="_blank" href="https://localhost:8443/logbook/api/getPDF" download="file_new_name.pdf" id="summary-button17" class="button button-dark  button-block">PDF</a>
+        </div>
+        <a ui-sref="menu.monthlySummary" id="summary-button19" class="button button-dark  button-block">Monthly Summary</a>
+        <button id="summary-button20" class="button button-assertive  button-block">Delete All Entries</button>
+    </ion-content>
 </ion-view>

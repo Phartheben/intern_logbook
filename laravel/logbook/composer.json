@@ -10,7 +10,10 @@
         "propel/propel1": "^1.7",
         "jelix/inifile": "^2.2",
         "barryvdh/laravel-dompdf": "^0.7.0",
-        "laravel/passport": "^1.0"
+        "laravel/passport": "^1.0",
+        "intervention/image": "^2.3",
+        "maatwebsite/excel": "~2.1.0",
+        "league/csv": "^8.2"
         
     },
     "require-dev": {

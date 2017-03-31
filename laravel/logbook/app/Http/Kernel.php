@@ -36,6 +36,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
+            \Illuminate\Session\Middleware\StartSession::class,
         ],
     ];
 
@@ -56,5 +57,6 @@ class Kernel extends HttpKernel
         'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class,
         'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
         'cors' => \App\Http\Middleware\CorsMiddleWare::class,
+        'api.session' => \App\Http\Middleware\ApiSession::class,
     ];
 }
