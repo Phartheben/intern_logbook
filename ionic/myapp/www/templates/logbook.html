@@ -1,28 +1,13 @@
 <ion-view title="Logbook" id="page4" style="background-color:#FFFFFF;">
     <ion-content padding="true" class="has-header">
         <div ng-repeat="activity in activities">
-            <div ng-controller="logbookCtrl">
-                <div ng-hide="editorEnabled">
-                    <h5 style="color:#000000" ui-sref="menu.logbook3">{{activity.date | date}}</h5>
-                    <div class="show-list-numbers-and-dots">
-                        <p style="color: #000000">{{activity.description}}</p>
-                    </div>
-                    <a href="#" ng-click="enableEditor()">Edit activity</a>
-                </div>
-                <div ng-show="editorEnabled">
-                    <input ng-model="editableTitle" ng-show="editorEnabled">
-                    <a href="#" ng-click="update({{activity.id}})">Save</a> or
-                    <a href="#" ng-click="disableEditor()">cancel</a>.
-                </div>
+            <h5 style="color:#000000" ui-sref="menu.logbook3">{{activity.date | date}}</h5>
+            <div class="show-list-numbers-and-dots">
+                <p style="color: #000000">{{activity.description}}</p>
             </div>
-            <!-- <h5 style="color:#000000" ui-sref="menu.logbook3">{{activity.date | date}}</h5>
-<div class="show-list-numbers-and-dots">
-    <p style="color: #000000">{{activity.description}}</p>
-</div>
- -->
             <div id="summary-markdown17" class="show-list-numbers-and-dots"></div>
             <div id="summary-button-bar1" class="button-bar">
-                <a ng-click="update({{activity.id}})" id="summary-button16" class="button button-dark  button-block">Update</a>
+                <a ng-click="update()" id="summary-button16" class="button button-dark  button-block">Update</a>
                 <a ng-click="delete({{activity.id}})" id="summary-button17" class="button button-dark  button-block">Delete</a>
             </div>
         </div>

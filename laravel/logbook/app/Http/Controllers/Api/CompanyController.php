@@ -117,7 +117,9 @@ class CompanyController extends AppController
                             ::where('id', '=', \Auth::id())
                             ->first();
 
-        $this->setResponseVar('response.resource', \DBHelper::toResource($company));
+        if ($company) {
+            $this->setResponseVar('response.resource', \DBHelper::toResource($company));
+        }
 
         return response()->json($this->getResponseData(), $this->getResponseCode());
         // return view('showIns', ['institution' => $institution]);

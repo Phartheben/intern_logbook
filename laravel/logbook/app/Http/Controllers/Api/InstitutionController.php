@@ -152,7 +152,9 @@ class InstitutionController extends AppController
                             ::where('id', '=', \Auth::id())
                             ->first();
 
-        $this->setResponseVar('response.resource', \DBHelper::toResource($institution));
+        if ($institution) {
+            $this->setResponseVar('response.resource', \DBHelper::toResource($institution));
+        }
 
         return response()->json($this->getResponseData(), $this->getResponseCode());
         // return view('showIns', ['institution' => $institution]);

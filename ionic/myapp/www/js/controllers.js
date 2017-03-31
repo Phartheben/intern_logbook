@@ -110,7 +110,7 @@ angular.module('app.controllers', [])
 
         $scope.update = function(id) {
                 $http({
-                        url: 'https://localhost:8443/logbook/api/activity',
+                        url: 'https://localhost:8443/logbook/api/activity' + id,
                         method: 'PUT',
                         headers: {
                             'Authorization': 'Bearer ' + window.localStorage.getItem('access_token'),

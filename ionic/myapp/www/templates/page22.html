@@ -1,0 +1,25 @@
+<form ng-app="myApp" < name="myForm" novalidate>
+    <html ng-app="validation">
+    <ion-view title="Company Name" id="page22">
+        <ion-content padding="true" class="has-header">
+            <div class="spacer" style="width: 300px; height: 23px;"></div>
+            <form id="remarks2-form18" class="list">
+                <label class="item item-input" id="remarks2-textarea5">
+                    <span class="input-label">Institution Name</span>
+                    <textarea placeholder="Type your institution here" ng-model="data.name"></textarea>
+                </label>
+                <div class="spacer" style="width: 300px; height: 23px;"></div>
+                <label class="item item-input" id="logbook5-textarea1">
+                    <span class="input-label">Intake</span>
+                    <textarea placeholder="Type your year and intake here" name="Location" ng-model="data.intake"></textarea>
+                </label>
+                <div class="spacer" style="width: 300px; height: 23px;"></div>
+                <label class="item item-input" id="logbook5-textarea1">
+                    <span class="input-label">Location</span>
+                    <textarea placeholder="Type your location here" name="Location" ng-model="data.location"></textarea>
+                </label>
+            </form>
+            <div class="spacer" style="width: 300px; height: 23px;"></div>
+            <a ng-click="addInstitution()" id="remarks2-button18" class="button button-dark  button-block">Submit</a>
+        </ion-content>
+    </ion-view>
